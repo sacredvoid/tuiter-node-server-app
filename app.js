@@ -6,7 +6,9 @@ import cors from 'cors';
 import session from 'express-session';
 import AuthController from './users/auth-controller.js';
 import "dotenv/config";
+import mongoose from 'mongoose';
 
+mongoose.connect(process.env.DB_CONNECTION_STRING)
 const app = express();
 
 app.use(cors({
