@@ -15,14 +15,14 @@ const createUser = async (req, res) => {
   
 
   const deleteUser = async (req, res) => {
-    const id = req.params.id;
+    const id = req.params.uid;
     const status = await usersDao.deleteUser(id);
     res.json(status);
   };
   
 
   const updateUser = async (req, res) => {
-    const id = req.params.id;
+    const id = req.params.uid;
     const status = await usersDao.updateUser(id, req.body);
     const user = await usersDao.findUserById(id);
     req.session["currentUser"] = user;
@@ -54,7 +54,7 @@ const findAllUsers = async (req, res) => {
   };
 
 const findUserById = async (req, res) => {
-    const id = req.params.id;
+    const id = req.params.uid;
     const user = await usersDao.findUserById(id);
     res.json(user);
   };

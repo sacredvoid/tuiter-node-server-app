@@ -11,11 +11,9 @@ export default (app) => {
 
 const createTuit = async (req, res) => {
     const newTuit = req.body;
-    newTuit.likes = 0;
-    newTuit.dislikes = 0;
-    newTuit.liked = false;
     const insertedTuit = await tuitsDao.createTuit(newTuit);
     res.json(insertedTuit);
+    console.log(insertedTuit);
 }
 const findTuits  = async (req, res) => {
     const tuits = await tuitsDao.findTuits();
@@ -30,6 +28,6 @@ const updateTuit = async (req, res) => {
 const deleteTuit = async (req, res) => {
     const tuitID = req.params.tid;
     const status = await tuitsDao.deleteTuit(tuitID);
-    tuits = tuits.filter(tuit => tuit._id !== tuitID);
-    res.json(status)
+    const tuits = await tuitsDao.findTuits();
+    res.json(tuits);
 }
